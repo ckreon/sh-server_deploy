@@ -54,3 +54,7 @@ echo "Finished with AppInstall!"
 echo ""
 echo "#######################################"
 echo ""
+
+echo ""
+echo "Remember to have fun."
+echo ""

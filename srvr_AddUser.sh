@@ -42,18 +42,6 @@ gpasswd -a $SS_NEW_SRVR_USR sudo
 # Disable sudo requiring password for this user
 echo 'ckreon ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
-# Modify sshd_config to disallow root login
-echo ""
-echo "Disallowing root login..."
-echo ""
-sed -i "s/\(PermitRootLogin *\).*/\1no/" /etc/ssh/sshd_config
-
-# Restart SSH service
-echo ""
-echo "Restarting SSH service..."
-echo ""
-service ssh restart
-
 echo ""
 echo "#######################################"
 echo ""

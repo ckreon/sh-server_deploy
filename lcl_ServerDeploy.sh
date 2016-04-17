@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SS_FROM_SETUP=false
+SS_FROM_SETUP=
 
 echo ""
 echo "#######################################"
@@ -54,7 +54,7 @@ echo ""
 echo "Starting AddUser server script!"
 echo ""
 
-# Connect to Server and Deploy AddUser script then remove it
+# Connect to Server and deploy AddUser script then remove it
 ssh root@$SS_SERVER_IP_AD ". ~/srvr_AddUser.sh && rm ~/srvr_AddUser.sh"
 
 # Remove user and password variables from the AddUser script
@@ -94,7 +94,13 @@ echo ""
 echo "#######################################"
 echo ""
 
-# Put SSL variable into the ServerConfig script
+# Copy DisallowRoot script to server
+scp srvr_DisallowRoot.sh root@$SS_SERVER_IP_AD:~
+
+# Connect to Server and deploy DisallowRoot script then remove it
+ssh root@$SS_SERVER_IP_AD ". ~/srvr_DisallowRoot.sh && rm ~/srvr_DisallowRoot.sh"
+
+# Put firewall variables into the FirewallConfig script
 sed -i '' "s/\(SS_ENABLE_FWHTP *= *\).*/\1$SS_ENABLE_FWHTP/" srvr_FirewallConfig.sh
 sed -i '' "s/\(SS_ENABLE_FWSSL *= *\).*/\1$SS_ENABLE_FWSSL/" srvr_FirewallConfig.sh
 sed -i '' "s/\(SS_ENABLE_FWMAL *= *\).*/\1$SS_ENABLE_FWMAL/" srvr_FirewallConfig.sh
@@ -106,7 +112,7 @@ echo ""
 echo "Starting FirewallConfig server script!"
 echo ""
 
-# Connect to Server and Deploy FirewallConfig script then remove it
+# Connect to Server and deploy FirewallConfig script then remove it
 ssh $SS_NEW_SRVR_USR@$SS_SERVER_IP_AD "sudo bash srvr_FirewallConfig.sh && rm ~/srvr_FirewallConfig.sh"
 
 # Remove variables from FireWall Config
@@ -129,7 +135,7 @@ echo ""
 echo "Starting NTPConfig server script!"
 echo ""
 
-# Connect to Server and Deploy NTPConfig script then remove it
+# Connect to Server and deploy NTPConfig script then remove it
 ssh $SS_NEW_SRVR_USR@$SS_SERVER_IP_AD "sudo bash srvr_NTPConfig.sh && rm ~/srvr_NTPConfig.sh"
 
 echo ""
@@ -152,7 +158,7 @@ if [ "$SS_ENABLE_SWAPF" = true ] ; then
 	echo "Starting SwapConfig server script!"
 	echo ""
 
-	# Connect to Server and Deploy SwapConfig script then remove it
+	# Connect to Server and deploy SwapConfig script then remove it
 	ssh $SS_NEW_SRVR_USR@$SS_SERVER_IP_AD "sudo bash srvr_SwapConfig.sh && rm ~/srvr_SwapConfig.sh"
 
 	# Remove Swapsize and Powerdown variable from SwapConfig
@@ -171,7 +177,7 @@ fi
 echo ""
 echo "#######################################"
 echo ""
-echo "Finished with General Server Config!"
+echo "Finished with Server Setup!"
 echo ""
 echo "#######################################"
 echo ""
@@ -201,6 +207,6 @@ if [ "$SS_SRV_APPINSTL" = true ] ; then
 	sed -i '' "s/\(SS_PWR_DWN_DROP *= *\).*/\1/" _SetupApps.sh
 else
 	echo ""
-  echo "All done, enjoy!"
+  echo "Now go forth and do incredible things."
   echo ""
 fi
