@@ -36,7 +36,16 @@ SS_SWAPFIL_SIZE="1G"
 SS_PWR_DWN_DROP=false
 
 # Launch App Install script when server config is done
-SS_SRV_APPINSTL=false
+SS_SRV_APPINSTL=true
+
+# Set packages that are prerequisite here
+SS_PACK_PREREQS="build-essential git"
+
+# Set whether or not to install Ruby
+SS_INSTALL_RUBY=true
+
+# Set version of Ruby to install
+SS_RUBY_VERSION="2.3.0"
 
 #
 # DEPLOY SCRIPT
@@ -49,3 +58,13 @@ sed -i '' "s/\(SS_FROM_SETUP *= *\).*/\1true/" lcl_ServerDeploy.sh
 
 # Change FROM_SETUP variable back to false
 sed -i '' "s/\(SS_FROM_SETUP *= *\).*/\1false/" lcl_ServerDeploy.sh
+
+echo ""
+echo "####  ####  ####  ####"
+echo "####  ####  ####  ####"
+echo ""
+echo "Server configured!"
+echo ""
+echo "####  ####  ####  ####"
+echo "####  ####  ####  ####"
+echo ""

@@ -180,6 +180,25 @@ if [ "$SS_SRV_APPINSTL" = true ] ; then
 	echo ""
 	echo "Great! Let's install the server Apps."
 	echo ""
+
+	# Copy variables to _SetupApps script
+	sed -i '' "s/\(SS_SERVER_IP_AD *=\" *\).*/\1$SS_SERVER_IP_AD\"/" _SetupApps.sh
+	sed -i '' "s/\(SS_NEW_SRVR_USR *=\" *\).*/\1$SS_NEW_SRVR_USR\"/" _SetupApps.sh
+	sed -i '' "s/\(SS_PACK_PREREQS *=\" *\).*/\1$SS_PACK_PREREQS\"/" _SetupApps.sh
+	sed -i '' "s/\(SS_INSTALL_RUBY *= *\).*/\1$SS_INSTALL_RUBY/" _SetupApps.sh
+	sed -i '' "s/\(SS_RUBY_VERSION *=\" *\).*/\1$SS_RUBY_VERSION\"/" _SetupApps.sh
+	sed -i '' "s/\(SS_PWR_DWN_DROP *= *\).*/\1$SS_PWR_DWN_DROP/" _SetupApps.sh
+
+	# Launch the SetupApps script
+	. _SetupApps.sh
+
+	# Reset the variables in the _SetupApps script
+	sed -i '' "s/\(SS_SERVER_IP_AD *=\" *\).*/\1\"/" _SetupApps.sh
+	sed -i '' "s/\(SS_NEW_SRVR_USR *=\" *\).*/\1\"/" _SetupApps.sh
+	sed -i '' "s/\(SS_PACK_PREREQS *=\" *\).*/\1\"/" _SetupApps.sh
+	sed -i '' "s/\(SS_INSTALL_RUBY *= *\).*/\1/" _SetupApps.sh
+	sed -i '' "s/\(SS_RUBY_VERSION *=\" *\).*/\1\"/" _SetupApps.sh
+	sed -i '' "s/\(SS_PWR_DWN_DROP *= *\).*/\1/" _SetupApps.sh
 else
 	echo ""
   echo "All done, enjoy!"
