@@ -5,13 +5,13 @@
 #
 
 # Server IP
-SS_SERVER_IP_AD="198.199.106.223"
+SS_SERVER_IP_AD="159.203.220.41"
 
 # New Server User Name
 SS_NEW_SRVR_USR="ckreon"
 
 # Set $SS_PASSWORD from the command line: ( SS_PASSWORD=MyPassword123 )
-# !!! DON'T USE SPECIAL CHARACTERS !!!
+# !!! DON'T USE SPECIAL CHARACTERS - DON'T SAVE YOUR PASSWORD IN THIS FILE !!!
 SS_SRVR_USR_PWD=$SS_PASSWORD
 
 # SSH Key Path for User
@@ -38,14 +38,21 @@ SS_PWR_DWN_DROP=false
 # Launch App Install script when server config is done
 SS_SRV_APPINSTL=true
 
-# Set packages that are prerequisite here
-SS_PACK_PREREQS="build-essential git"
-
 # Set whether or not to install Ruby
 SS_INSTALL_RUBY=true
 
 # Set version of Ruby to install
 SS_RUBY_VERSION="2.3.0"
+
+# Set packages that are prerequisite here
+# Installing Ruby? ( build-essential libssl-dev libreadline-dev zlib1g-dev )
+SS_PACK_PREREQS="build-essential libssl-dev libreadline-dev zlib1g-dev git"
+
+# Set whether to generate Server SSH key
+SSH_KEYGEN_SRVR=true
+
+# Description for server-generated SSH key
+SSH_KEY_DESCRIP="server_key"
 
 #
 # DEPLOY SCRIPT

@@ -19,8 +19,8 @@ if [ "$SS_FROM_SETUP" = true ] ; then
 	echo "#######################################"
 else
 	echo "This script should be launched from _Setup.sh."
-  echo "Variables will not be initialized otherwise."
-  echo ""
+	echo "Variables will not be initialized otherwise."
+	echo ""
 	echo "#######################################"
 
   exit 1
@@ -193,6 +193,8 @@ if [ "$SS_SRV_APPINSTL" = true ] ; then
 	sed -i '' "s/\(SS_PACK_PREREQS *=\" *\).*/\1$SS_PACK_PREREQS\"/" _SetupApps.sh
 	sed -i '' "s/\(SS_INSTALL_RUBY *= *\).*/\1$SS_INSTALL_RUBY/" _SetupApps.sh
 	sed -i '' "s/\(SS_RUBY_VERSION *=\" *\).*/\1$SS_RUBY_VERSION\"/" _SetupApps.sh
+	sed -i '' "s/\(SSH_KEYGEN_SRVR *= *\).*/\1$SSH_KEYGEN_SRVR/" _SetupApps.sh
+	sed -i '' "s/\(SSH_KEY_DESCRIP *=\" *\).*/\1$SSH_KEY_DESCRIP\"/" _SetupApps.sh
 	sed -i '' "s/\(SS_PWR_DWN_DROP *= *\).*/\1$SS_PWR_DWN_DROP/" _SetupApps.sh
 
 	# Launch the SetupApps script
@@ -204,9 +206,11 @@ if [ "$SS_SRV_APPINSTL" = true ] ; then
 	sed -i '' "s/\(SS_PACK_PREREQS *=\" *\).*/\1\"/" _SetupApps.sh
 	sed -i '' "s/\(SS_INSTALL_RUBY *= *\).*/\1/" _SetupApps.sh
 	sed -i '' "s/\(SS_RUBY_VERSION *=\" *\).*/\1\"/" _SetupApps.sh
+	sed -i '' "s/\(SSH_KEYGEN_SRVR *= *\).*/\1/" _SetupApps.sh
+	sed -i '' "s/\(SSH_KEY_DESCRIP *=\" *\).*/\1\"/" _SetupApps.sh
 	sed -i '' "s/\(SS_PWR_DWN_DROP *= *\).*/\1/" _SetupApps.sh
 else
 	echo ""
-  echo "Now go forth and do incredible things."
-  echo ""
+	echo "Now go forth and do incredible things."
+	echo ""
 fi
